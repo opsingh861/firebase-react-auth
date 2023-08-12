@@ -4,6 +4,7 @@ import { Container } from "react-bootstrap";
 import { AuthProvider } from "./context/AuthContext";
 import Dashboard from "./components/Dashboard.Component";
 import Login from "./components/Login.Component";
+import ForgotPassword from "./components/ForgotPassword.Component";
 import UpdateProfile from "./components/UpdateProfile.Component";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import PrivateRoute from "./components/PrivateRoute";
@@ -24,6 +25,7 @@ function App() {
               <Route path="/signup" Component={Signup} />
               <Route path="/login" Component={Login} />
               <Route path="/update-profile" Component={UpdateProfile} />
+              <Route path="/forgot-password" Component={ForgotPassword} />
             </Routes>
           </AuthProvider>
         </Router>

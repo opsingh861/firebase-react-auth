@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import { Button, Card, Form, Alert } from "react-bootstrap"
 import { useAuth } from '../context/AuthContext'
 import { Link, useNavigate } from 'react-router-dom'
-const Signup = () => {
+const Login = () => {
     const emailRef = useRef()
     const passwordRef = useRef()
     const passwordConfirmRef = useRef()
@@ -49,7 +49,9 @@ const Signup = () => {
                             Login
                         </Button>
                     </form>
-
+                    <div className='w-100 text-center mt-3'>
+            Forgot password? <Link to={"/forgot-password"}> Reset</Link>
+            </div>
                 </Card.Body>
             </Card>
             <div className='w-100 text-center mt-2'>
@@ -59,4 +61,4 @@ const Signup = () => {
     )
 }
 
-export default Signup
+export default Login
