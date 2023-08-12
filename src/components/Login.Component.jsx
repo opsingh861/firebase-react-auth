@@ -6,22 +6,20 @@ const Signup = () => {
     const emailRef = useRef()
     const passwordRef = useRef()
     const passwordConfirmRef = useRef()
-    const { signup, currentUser } = useAuth()
+    const { login, currentUser } = useAuth()
     const [error, setError] = useState()
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
     async function handleSubmit(e) {
         e.preventDefault()
-        if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-            return setError('Passwords do not match')
-        }
         try {
             setError('')
             setLoading(true)
-            await signup(emailRef.current.value, passwordRef.current.value)
+            await login(emailRef.current.value, passwordRef.current.value)
             navigate("/")
+            console.log(currentUser)
         } catch (error) {
-            setError('Failed to create an account')
+            setError('Failed to Sign in')
             console.log(error)
         }
         setLoading(false)
@@ -31,7 +29,7 @@ const Signup = () => {
         <>
             <Card>
                 <Card.Body>
-                    <h2 className='text-center mb-4'>Sign up</h2>
+                    <h2 className='text-center mb-4'>Login</h2>
                     {error && <Alert variant='danger'>{error}</Alert>}
                     <form onSubmit={handleSubmit}>
                         <Form.Group id="email">
@@ -46,22 +44,16 @@ const Signup = () => {
                             </Form.Label>
                             <Form.Control type='password' ref={passwordRef} required />
                         </Form.Group>
-                        <Form.Group id="password-confirm">
-                            <Form.Label>
-                                Password Confirmation
-                            </Form.Label>
-                            <Form.Control type='password' ref={passwordConfirmRef} required />
-                        </Form.Group>
                         <br />
                         <Button disabled={loading} className='w-100' type='submit'>
-                            Sign Up
+                            Login
                         </Button>
                     </form>
 
                 </Card.Body>
             </Card>
             <div className='w-100 text-center mt-2'>
-                Already have an account? <Link to={"/login"}>Login</Link>
+                Need an account? <Link to={"/signup"}> Sign up</Link>
             </div>
         </>
     )
